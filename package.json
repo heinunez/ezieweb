@@ -1,0 +1,38 @@
+{
+  "name": "ezieweb",
+  "version": "1.0.0",
+  "description": "easy cli client for sieweb",
+  "main": "index.js",
+  "type": "module",
+  "files": [
+    "bin"
+  ],
+  "types": "bin/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heinunez/ezieweb.git"
+  },
+  "keywords": [
+    "sieweb",
+    "ts",
+    "js",
+    "cli"
+  ],
+  "author": "Heiner Nuñez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heinunez/ezieweb/issues"
+  },
+  "homepage": "https://github.com/heinunez/ezieweb#readme",
+  "devDependencies": {
+    "@types/node": "^20.6.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.5.0"
+  }
+}
