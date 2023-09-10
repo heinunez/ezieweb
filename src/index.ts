@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-console.log("hello");
+import chalk from "chalk";
+
+console.log(chalk.bgGreen("hello"));
