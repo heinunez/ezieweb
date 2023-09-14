@@ -8,8 +8,10 @@ export class SieAuth {
     }
 
     async getToken(username: string, pass: string): Promise<string> {
-        const { data } = await axios.post<TokenResult>(`${this.baseUrl}/login/Ingresar`, { user: username, pass: pass })
-        return data.json.token;
+        const res = await axios.post<TokenResult>(`${this.baseUrl}/login/Ingresar`, { user: username, pass: pass });
+        if (res.data.json)
+            return res.data.json.token;
+        throw Error("incorrect username or password");
     }
 }
 

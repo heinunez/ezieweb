@@ -9,23 +9,18 @@ export class SieClient {
         this.conf = { headers: { "Sie-Token": token } }
     }
 
-    async getStudent(): Promise<Student> {
-        const students = await this.getStudents();
-        if (students.length) {
-            return new Student(students[0]);
-        } else {
-            throw new Error("Students not found");
-        }
-    }
-
     async getCourses(studentLevelId: string): Promise<Course[]> {
         const { data } = await axios.get<SieCourse[]>(`${this.baseUrl}/HyoAsignaprs/getCursosClase?nemo=${studentLevelId}`, this.conf);
         return data.map((c: SieCourse) => new Course(c));
     }
 
-    private async getStudents(): Promise<SieStudent[]> {
+    async getStudents(): Promise<Student[]> {
         const { data } = await axios.get<SieStudents>(`${this.baseUrl}/Alumno/getEstudiantes`, this.conf);
-        return data.estudiantes || [];
+        const students = data.estudiantes || [];
+        if (students.length) {
+            return students.map((s: SieStudent) => new Student(s));
+        }
+        return [];
     }
 
 }
@@ -37,6 +32,7 @@ interface SieStudents {
 interface SieStudent {
     ALUCOD: string;
     NEMO: string;
+    NOMCOMP: string;
 }
 
 interface SieCourse {
@@ -45,17 +41,19 @@ interface SieCourse {
     CURSONOM: string;
 }
 
-class Student {
+export class Student {
     id: string;
     levelId: string;
+    name: string;
 
     constructor(sieStudent: SieStudent) {
         this.id = sieStudent.ALUCOD;
         this.levelId = sieStudent.NEMO;
+        this.name = sieStudent.NOMCOMP;
     }
 }
 
-class Course {
+export class Course {
     id: string;
     group: string;
     name: string;
