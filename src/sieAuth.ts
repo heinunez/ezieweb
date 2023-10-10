@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export class SieAuth {
-    private baseUrl: string;
+    private baseUrl?: string;
 
-    constructor(baseUrl: string) {
+    constructor(baseUrl?: string) {
         this.baseUrl = baseUrl;
     }
 

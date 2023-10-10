@@ -1,4 +1,8 @@
 #!/usr/bin/env node
-import chalk from "chalk";
+import { SieCli } from "./cli/index.js";
+import { getPrefs } from "./cli/prefs.js";
 
-console.log(chalk.bgGreen("hello"));
+const prefs = getPrefs();
+new SieCli(prefs).start();
+
+//chalk | inquirer | gradient-string | chalk-animation | figlet | nanospinner
